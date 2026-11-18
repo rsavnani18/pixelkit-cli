@@ -284,6 +284,16 @@ PixelKit is designed to grow into a modular image conversion toolkit.
 - [ ] Advanced conversion options
 - [ ] Conversion quality configuration
 
+
+## 🏗️ Architecture
+
+Explore the interactive architecture and codebase structure of PixelKit CLI.
+
+[![PixelKit CLI Architecture](https://gitdiagram.com/rsavnani18/pixelkit-cli/diagram.png)](https://gitdiagram.com/rsavnani18/pixelkit-cli?utm_source=readme&utm_medium=picture)
+
+_Click the diagram to explore the interactive blueprint._
+
+
 🤝 Contributing
 
 Contributions, bug reports and feature suggestions are welcome!
