@@ -1,0 +1,53 @@
+name: PixelKit CLI CI
+
+on:
+push:
+branches:
+- main
+pull_request:
+branches:
+- main
+workflow_dispatch:
+
+permissions:
+contents: read
+
+jobs:
+quality-check:
+name: Quality Checks (Node.js ${{ matrix.node-version }})
+runs-on: ubuntu-latest
+
+strategy:
+  fail-fast: false
+  matrix:
+    node-version: [20, 22]
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+
+  - name: Setup pnpm
+    uses: pnpm/action-setup@v4
+    with:
+      version: 10
+
+  - name: Setup Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: ${{ matrix.node-version }}
+      cache: pnpm
+
+  - name: Install dependencies
+    run: pnpm install --frozen-lockfile
+
+  - name: TypeScript typecheck
+    run: pnpm typecheck
+
+  - name: Run automated tests
+    run: pnpm test
+
+  - name: Build project
+    run: pnpm build
+
+  - name: CI completed
+    run: echo "PixelKit CLI checks passed successfully!"

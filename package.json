@@ -1,0 +1,71 @@
+{
+  "name": "pixelkit-cli",
+  "version": "1.0.0",
+  "description": "A modular command-line image conversion toolkit built with TypeScript.",
+  "license": "MIT",
+  "author": "Rahul Savnani",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rsavnani18/pixelkit-cli.git"
+  },
+  "homepage": "https://github.com/rsavnani18/pixelkit-cli#readme",
+  "bugs": {
+    "url": "https://github.com/rsavnani18/pixelkit-cli/issues"
+  },
+  "keywords": [
+    "pixelkit",
+    "image-converter",
+    "image-optimization",
+    "webp",
+    "png",
+    "avif",
+    "cli",
+    "typescript",
+    "sharp",
+    "image-processing"
+  ],
+  "type": "module",
+  "bin": {
+    "pixelkit-cli": "./dist/cli/index.js",
+    "webpkit": "./dist/commands/webp.js",
+    "pngkit": "./dist/commands/png.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CONTRIBUTING.md"
+  ],
+  "scripts": {
+    "dev": "tsx src/cli/index.ts",
+    "dev:webp": "tsx src/commands/webp.ts",
+    "dev:png": "tsx src/commands/png.ts",
+    "build": "tsc",
+    "start": "node dist/cli/index.js",
+    "start:webp": "node dist/commands/webp.js",
+    "start:png": "node dist/commands/png.js",
+    "clean": "node --input-type=module -e \"import { rmSync } from 'node:fs'; rmSync('dist', { recursive: true, force: true })\"",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts",
+    "test:watch": "tsx --test --watch tests/*.test.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "pnpm run typecheck && pnpm run test && pnpm run build",
+    "prepublishOnly": "pnpm run clean && pnpm run check"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@img/sharp-wasm32": "^0.35.5",
+    "@inquirer/prompts": "^8.8.0",
+    "chalk": "^6.0.1",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.2",
+    "prettier": "^3.10.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}
